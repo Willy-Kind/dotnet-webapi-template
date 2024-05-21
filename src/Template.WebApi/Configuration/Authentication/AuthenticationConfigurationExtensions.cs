@@ -5,7 +5,7 @@ namespace Template.WebApi.Configuration.Authentication;
 
 public static class AuthenticationConfigurationExtensions
 {
-    public static WebApplicationBuilder AddJwtBearer(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddAuthenticationWithJwtBearer(this WebApplicationBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
         if (!builder.Configuration.AuthenticationEnabled())
@@ -36,18 +36,17 @@ public static class AuthenticationConfigurationExtensions
         return builder;
     }
 
-    public static bool AuthenticationEnabled(this IConfiguration configuration)
-    {
-        ArgumentNullException.ThrowIfNull(configuration);
-        var authConfiguration = configuration.GetSection(JwtBearerConfiguration.ConfigurationSectionPosition).Get<JwtBearerConfiguration>();
-        return authConfiguration != null && authConfiguration.Enabled;
-    }
-
     public static IEndpointConventionBuilder ConfigureAuthorizatrion(this IEndpointConventionBuilder handler, IConfiguration configuration)
     {
         if (configuration.AuthenticationEnabled())
             handler.RequireAuthorization();
 
         return handler;
+    }
+
+    public static bool AuthenticationEnabled(this IConfiguration configuration)
+    {
+        var authConfiguration = configuration.GetSection(JwtBearerConfiguration.ConfigurationSectionPosition).Get<JwtBearerConfiguration>();
+        return authConfiguration != null && authConfiguration.Enabled;
     }
 }

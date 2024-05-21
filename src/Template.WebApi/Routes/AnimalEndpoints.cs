@@ -1,11 +1,12 @@
 using Asp.Versioning.Builder;
+
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Agria.WebApi.Template.Api.Routes;
 
-internal static class AnimalEndpoints
+public static class AnimalEndpoints
 {
-    public static IEndpointRouteBuilder AddWeatherEndpoints(this IEndpointRouteBuilder endpointRouteBuilder, IConfiguration configuration)
+    public static IEndpointRouteBuilder AddAnimalEndpoints(this IEndpointRouteBuilder endpointRouteBuilder)
     {
         var builder = endpointRouteBuilder.NewVersionedApi("Animals");
 
@@ -16,41 +17,31 @@ internal static class AnimalEndpoints
     private static void AddVersion(this IVersionedEndpointRouteBuilder builder, double version)
     {
         var group = builder
-                   .MapGroup("/api/v{version:apiVersion}/animals")
-                   .HasApiVersion(version);
+            .MapGroup("/api/v{version:apiVersion}/animals")
+            .HasApiVersion(version);
 
-        group.MapGet("/weatherforecast", () =>
-        {
-            var forecast = Enumerable.Range(1, 5).Select(index =>
-            new Animal
-            (
-                Random.Shared.Next(0, 55),
-                animals[Random.Shared.Next(animals.Length)]
-            ))
-            .ToArray();
-            return forecast;
-        })
-        .WithName("GetWeatherForecast")
-        .WithOpenApi();
+        group
+            .MapGet(string.Empty, GetAnimals)
+            .WithName("GetAnimals")
+            .WithOpenApi();
     }
 
-    public async static Task<Results<Ok<string[]>, NotFound>> GetAnimails()
+    public static Results<Ok<Animal[]>, NotFound> GetAnimals()
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-        new Animal
-        (
-            Random.Shared.Next(0, 55),
-            animals[Random.Shared.Next(animals.Length)]
-        ))
-        .ToArray();
-        await Task.CompletedTask;
-        if (string.IsNullOrEmpty("Animails"))
-            return TypedResults.NotFound();
+        var animals = Enumerable
+            .Range(1, 3)
+            .Select(index =>
+                new Animal
+                (
+                    Random.Shared.Next(0, 55),
+                    AnimalsTypes[Random.Shared.Next(AnimalsTypes.Length)]
+                ))
+            .ToArray() ?? [];
 
-        return TypedResults.Ok(new string[] { "" });
+        return animals.Length > 0 ? TypedResults.Ok(animals) : TypedResults.NotFound();
     }
 
-    record Animal(int Age, string AnimalType);
+    public record Animal(int Age, string AnimalType);
 
-    private static readonly string[] animals = ["Panda", "Rat", "Goats", "Tigers", "Pikes", "Zpid3r", "Panthers", "Pihranha"];
+    private static readonly string[] AnimalsTypes = ["Panda", "Rat", "Goat", "Tiger", "Pike", "Zpid3r", "Panther", "Pihranha"];
 }
