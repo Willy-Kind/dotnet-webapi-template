@@ -1,0 +1,1 @@
+[![.NET](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml)
