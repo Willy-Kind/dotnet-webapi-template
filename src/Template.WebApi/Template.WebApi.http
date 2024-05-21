@@ -1,0 +1,6 @@
+@Agria.WebApi.Template.Api_HostAddress = http://localhost:5105
+
+GET {{Agria.WebApi.Template.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
