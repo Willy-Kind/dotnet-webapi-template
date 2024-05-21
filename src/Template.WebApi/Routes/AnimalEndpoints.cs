@@ -29,7 +29,7 @@ public static class AnimalEndpoints
     public static Results<Ok<Animal[]>, NotFound> GetAnimals()
     {
         var animals = Enumerable
-            .Range(1, 3)
+            .Range(0, 3)
             .Select(index =>
                 new Animal
                 (
