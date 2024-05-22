@@ -7,7 +7,7 @@ namespace Template.WebApi.Configuration.Logging;
 
 internal static class OpenTelemetryConfigurationExtensions
 {
-    public static WebApplicationBuilder AddOpenTelemetry(this WebApplicationBuilder builder, IConfiguration configuration)
+    internal static WebApplicationBuilder AddOpenTelemetry(this WebApplicationBuilder builder, IConfiguration configuration)
     {
         // ApplicationName
         var resourceBuilder = ResourceBuilder

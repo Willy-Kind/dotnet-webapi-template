@@ -3,50 +3,47 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Template.WebApi.Configuration.Authentication;
 
-public static class AuthenticationConfigurationExtensions
+internal static class AuthenticationConfigurationExtensions
 {
-    public static WebApplicationBuilder AddAuthenticationWithJwtBearer(this WebApplicationBuilder builder)
-    {
-        ArgumentNullException.ThrowIfNull(builder);
-        if (!builder.Configuration.AuthenticationEnabled())
-        {
-            return builder;
-        }
-        builder.Services
-            .AddAuthentication()
-            .AddJwtBearer(opts =>
-            {
-                var authConfiguration = builder.Configuration.GetSection(JwtBearerConfiguration.ConfigurationSectionPosition).Get<JwtBearerConfiguration>();
-
-                opts.Authority = authConfiguration!.Authority;
-                opts.TokenValidationParameters = new TokenValidationParameters
+    internal static IServiceCollection AddAuthenticationWithJwtBearer(this WebApplicationBuilder builder) =>
+        !builder.Configuration.AuthenticationEnabled()
+            ? builder.Services
+            : builder.Services
+                .AddAuthentication()
+                .AddJwtBearer(options =>
                 {
-                    ValidateIssuerSigningKey = true,
-                    ValidAudiences = authConfiguration.ValidAudiences,
-                };
-            });
+                    var authConfiguration = builder.Configuration
+                        .GetSection(JwtBearerConfiguration.ConfigurationSectionPosition)
+                        .Get<JwtBearerConfiguration>();
 
-        builder.Services
-            .AddAuthorizationBuilder()
-            .SetDefaultPolicy(
-                new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build());
+                    options.Authority = authConfiguration!.Authority;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidAudiences = authConfiguration.ValidAudiences,
+                    };
+                }).Services
+                .AddAuthorizationBuilder()
+                .SetDefaultPolicy(
+                    new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build())
+                .Services;
+
+    internal static IEndpointConventionBuilder ConfigureAuthorizatrion(this IEndpointConventionBuilder builder, IConfiguration configuration)
+    {
+        if (configuration.AuthenticationEnabled())
+            builder.RequireAuthorization();
 
         return builder;
     }
 
-    public static IEndpointConventionBuilder ConfigureAuthorizatrion(this IEndpointConventionBuilder handler, IConfiguration configuration)
+    internal static bool AuthenticationEnabled(this IConfiguration configuration)
     {
-        if (configuration.AuthenticationEnabled())
-            handler.RequireAuthorization();
+        var jwtBearerConfiguration = configuration
+            .GetSection("Authentication:Schemes:Bearer")
+            .Get<JwtBearerConfiguration>();
 
-        return handler;
-    }
-
-    public static bool AuthenticationEnabled(this IConfiguration configuration)
-    {
-        var authConfiguration = configuration.GetSection(JwtBearerConfiguration.ConfigurationSectionPosition).Get<JwtBearerConfiguration>();
-        return authConfiguration != null && authConfiguration.Enabled;
+        return jwtBearerConfiguration!.Enabled;
     }
 }

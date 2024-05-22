@@ -1,17 +1,19 @@
 ﻿using Microsoft.OpenApi.Models;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
+
 using Template.WebApi.Configuration.Authentication;
 
 namespace Template.WebApi.Configuration.Swagger;
 
-public static class AddJwtBearerOptions
+internal static class AddJwtBearerOptions
 {
     /// <summary>
     /// Adds possilbity to use JWT Bearer token when using the Swagger/OpenAPI UI.
     /// </summary>
     /// <param name="swaggerGenOptions"></param>
     /// <returns></returns>
-    public static SwaggerGenOptions AddJwtBearer(
+    internal static SwaggerGenOptions AddJwtBearer(
         this SwaggerGenOptions swaggerGenOptions,
         IConfiguration configuration)
     {

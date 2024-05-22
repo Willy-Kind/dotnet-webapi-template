@@ -1,6 +1,6 @@
 using Agria.WebApi.Template.Api.Routes;
 
-using Asp.Versioning;
+using Template.WebApi;
 
 using Template.WebApi.Configuration.Authentication;
 using Template.WebApi.Configuration.Error;
@@ -13,29 +13,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddAuthenticationWithJwtBearer();
 builder.AddOpenTelemetry(builder.Configuration);
 builder.Services.AddCorsWithOrigins(builder.Environment, builder.Configuration);
-
-builder.Services
-    .AddApiVersioning(options =>
-    {
-        options.DefaultApiVersion = new ApiVersion(1, 0);
-        options.AssumeDefaultVersionWhenUnspecified = true;
-        options.ReportApiVersions = true;
-    })
-    .AddApiExplorer(options =>
-    {
-        options.GroupNameFormat = "'v'VVV";
-        options.SubstituteApiVersionInUrl = true;
-    });
-
+builder.Services.AddApiVersioningAndExplorer();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger(builder.Configuration);
 builder.Services.AddExceptionHandler<DefaultExceptionHandler>();
+builder.Services.AddAnimalTypeClient(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
     app.UseSwaggerAndUI();
+
+if (app.Environment.IsProduction())
+    app.UseHsts();
 
 app.UseCorrelationHeaderPropagationMiddleware();
 
@@ -43,6 +33,6 @@ app.UseHttpsRedirection();
 
 app.UseCorsWithOrigins();
 
-app.AddAnimalEndpoints();
+app.AddAnimalEndpoints(app.Configuration);
 
 app.Run();

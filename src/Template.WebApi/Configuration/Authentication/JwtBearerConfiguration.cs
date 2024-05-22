@@ -1,13 +1,9 @@
 ﻿namespace Template.WebApi.Configuration.Authentication;
 
-public class JwtBearerConfiguration
+public record JwtBearerConfiguration(bool Enabled, string? Authority, IEnumerable<string>? ValidAudiences)
 {
-    public bool Enabled { get; set; }
-    public string? Authority { get; set; }
-    public IEnumerable<string>? ValidAudiences { get; set; }
-
     /// <summary>
     /// Position in configuration source. Eg. appsettings.json
     /// </summary>
-    public static readonly string ConfigurationSectionPosition = "Authentication:Schemes:Bearer";
+    internal static readonly string ConfigurationSectionPosition = "Authentication:Schemes:Bearer";
 }
