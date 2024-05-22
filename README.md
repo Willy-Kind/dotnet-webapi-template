@@ -17,7 +17,7 @@ To get started with this template, follow these steps:
 2. Navigate to the project directory:
 
     ```bash
-    cd dotnet-api-template
+    cd dotnet-webapi-template
     ```
 
 3. Install the required dependencies:
