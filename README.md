@@ -1,8 +1,8 @@
-# Dotnet API Template
+# Dotnet Web API Template
 
 [![.NET](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml)
 
-This is a template for building a .NET API project.
+This is a template for building a .NET Web API project.
 
 ## Getting Started
 
@@ -11,7 +11,7 @@ To get started with this template, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/Willy-Kind/dotnet-api-template.git
+    git clone https://github.com/Willy-Kind/dotnet-webapi-template.git
     ```
 
 2. Navigate to the project directory:
