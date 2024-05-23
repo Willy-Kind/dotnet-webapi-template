@@ -1,11 +1,16 @@
-﻿namespace Template.WebApi.Clients;
+﻿using System.Net;
+
+namespace Template.WebApi.Clients;
 
 /// <summary>
 /// Represents a stubbed HTTP message handler that can be used for testing purposes.
 /// </summary>
-public class StubbedHttpMessageHandler : HttpMessageHandler
+public class StubbedHttpMessageHandler : DelegatingHandler
 {
     private readonly Func<HttpRequestMessage, Task<HttpResponseMessage>> _requestDelegate;
+
+    public StubbedHttpMessageHandler(IExternalAnimalApi externalAnimalApi) =>
+            _requestDelegate = (request) => Task.FromResult(externalAnimalApi.GetValueAnimals());
 
     /// <summary>
     /// Initializes a new instance of the <see cref="StubbedHttpMessageHandler"/> class with a fixed response message.
