@@ -6,7 +6,8 @@ internal static class CorsConfigurationExtensions
 
     internal static IServiceCollection AddCorsWithOrigins(this IServiceCollection services, IWebHostEnvironment environment, IConfiguration configuration)
     {
-        var origins = configuration.GetSection("AllowedOrigins").Value!.Split("|");
+        string[] origins = [];
+        configuration.GetSection("AllowedOrigins").Bind(origins);
         return services.AddCors(options =>
             options.AddPolicy(AllowedOrigins, policy =>
             {

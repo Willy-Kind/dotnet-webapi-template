@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Template.WebApi;
+﻿namespace Template.WebApi;
 
 public class AnimalClient(HttpClient httpClient) : IAnimalClient
 {
@@ -9,6 +7,5 @@ public class AnimalClient(HttpClient httpClient) : IAnimalClient
         var response = await httpClient.GetAsync("api/v1.0/animals");
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<Animal[]>() ?? [];
-
     }
 }
