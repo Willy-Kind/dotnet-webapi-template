@@ -1,7 +1,6 @@
 using Agria.WebApi.Template.Api.Routes;
 
 using Template.WebApi;
-
 using Template.WebApi.Configuration.Authentication;
 using Template.WebApi.Configuration.Error;
 using Template.WebApi.Configuration.Logging;
@@ -33,6 +32,6 @@ app.UseHttpsRedirection();
 
 app.UseCorsWithOrigins();
 
-app.AddAnimalEndpoints(app.Configuration);
+app.RegisterAnimalEndpoints(app.Configuration);
 
 app.Run();
