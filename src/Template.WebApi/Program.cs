@@ -4,6 +4,7 @@ using Template.WebApi.Configuration.Error;
 using Template.WebApi.Configuration.Logging;
 using Template.WebApi.Configuration.Security;
 using Template.WebApi.Configuration.Swagger;
+using Template.WebApi.Routes;
 
 var builder = WebApplication.CreateBuilder(args);
 
