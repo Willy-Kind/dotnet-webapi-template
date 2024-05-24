@@ -9,8 +9,8 @@ public class StubbedHttpMessageHandler : DelegatingHandler
 {
     private readonly Func<HttpRequestMessage, Task<HttpResponseMessage>> _requestDelegate;
 
-    public StubbedHttpMessageHandler(IExternalAnimalApi externalAnimalApi) =>
-            _requestDelegate = (request) => Task.FromResult(externalAnimalApi.GetValueAnimals());
+    // public StubbedHttpMessageHandler(IExternalAnimalApi externalAnimalApi) =>
+    //         _requestDelegate = (request) => Task.FromResult(externalAnimalApi.GetValueAnimals());
 
     /// <summary>
     /// Initializes a new instance of the <see cref="StubbedHttpMessageHandler"/> class with a fixed response message.

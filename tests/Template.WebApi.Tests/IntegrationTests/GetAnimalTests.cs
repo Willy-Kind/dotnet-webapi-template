@@ -2,7 +2,6 @@ using System.Net;
 
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 using Template.WebApi.Clients;
 
@@ -17,18 +16,25 @@ public class GetAnimalTests
                         services
                             .AddHttpClient<IAnimalClient, AnimalClient>(client =>
                                 client.BaseAddress = new Uri("http://localhost"))
-                            .AddHttpMessageHandler(() => new StubbedHttpMessageHandler(response))));
+                            .ConfigurePrimaryHttpMessageHandler(() =>
+                                new StubbedHttpMessageHandler(_ =>
+                                    Task.FromResult(response)))));
 
     [Fact]
-    public async Task GetAnimals_ReturnsSuccessStatusCode()
+    public async Task GetAnimals_ReturnsSuccessStatusCode_WhenAnimalsExists()
     {
         // Arrange
-        var client = Fixture(new HttpResponseMessage(HttpStatusCode.OK)).CreateClient();
+        var client = Fixture(
+            new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("[{\"id\":1,\"name\":\"Dog\"}]")
+            })
+            .CreateClient();
 
         // Act
-        var response = await client.GetAsync("/api/animals");
+        var response = await client.GetAsync("/api/v1/animals");
 
         // Assert
-        response.EnsureSuccessStatusCode();
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }
