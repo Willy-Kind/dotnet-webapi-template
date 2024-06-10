@@ -25,11 +25,11 @@ public class AnimalClientTests
     }
 
     [Fact]
-    public async Task GetAnimals_ReturnsEmptyArray_WhenNoAnimalsExist()
+    public async Task GetAnimals_ReturnsEmptyArray_WhenNoAnimalsExistAndStatusIsNotFound()
     {
         //Arrange
         Animal[] expectedAnimals = [];
-        var client = CreateStubbedHttpClient(HttpStatusCode.OK, expectedAnimals);
+        var client = CreateStubbedHttpClient(HttpStatusCode.NotFound, expectedAnimals);
         _sut = new AnimalClient(client);
 
         // Act

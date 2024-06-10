@@ -10,13 +10,12 @@ public static class AnimalClientConfigurationExtensions
     public static IServiceCollection AddAnimalTypeClient(this IServiceCollection services, IConfiguration configuration)
     {
         var builder = services
-            // .AddScoped<IExternalAnimalApi, ExternalAnimalApi>()
             .AddHttpClient<IAnimalClient, AnimalClient>(client =>
                 client.BaseAddress = new Uri(configuration["AnimalApi:BaseAddress"]!));
 
         if (configuration.GetSection("AnimalApi:Disabled").Get<bool>())
             builder
-                .AddHttpMessageHandler(provider =>
+                .ConfigurePrimaryHttpMessageHandler(provider =>
                     new StubbedHttpMessageHandler(x =>
                         Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
                         {

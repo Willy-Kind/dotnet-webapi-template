@@ -24,8 +24,4 @@
 	  <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.22.0" />
   </ItemGroup>
   
-  <ItemGroup>
-  	<InternalsVisibleTo Include="Template.WebApi.Tests" />
-  </ItemGroup>
-
 </Project>

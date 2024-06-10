@@ -34,3 +34,5 @@ app.UseCorsWithOrigins();
 app.RegisterAnimalEndpoints(app.Configuration);
 
 app.Run();
+
+public partial class Program { }
