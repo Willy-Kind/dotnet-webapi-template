@@ -6,7 +6,7 @@ namespace Template.WebApi.Configuration.Authentication;
 internal static class AuthenticationConfigurationExtensions
 {
     internal static IServiceCollection AddAuthenticationWithJwtBearer(this WebApplicationBuilder builder) =>
-        !builder.Configuration.AuthenticationEnabled()
+        builder.Configuration.AuthenticationDisabled()
             ? builder.Services
             : builder.Services
                 .AddAuthentication()
@@ -30,20 +30,17 @@ internal static class AuthenticationConfigurationExtensions
                         .Build())
                 .Services;
 
-    internal static IEndpointConventionBuilder ConfigureAuthorizatrion(this IEndpointConventionBuilder builder, IConfiguration configuration)
-    {
-        if (configuration.AuthenticationEnabled())
-            builder.RequireAuthorization();
+    internal static IEndpointConventionBuilder ConfigureAuthorizatrion(this IEndpointConventionBuilder builder, IConfiguration configuration) =>
+        configuration.AuthenticationDisabled()
+            ? builder
+            : builder.RequireAuthorization();
 
-        return builder;
-    }
-
-    internal static bool AuthenticationEnabled(this IConfiguration configuration)
+    internal static bool AuthenticationDisabled(this IConfiguration configuration)
     {
         var jwtBearerConfiguration = configuration
             .GetSection("Authentication:Schemes:Bearer")
             .Get<JwtBearerConfiguration>();
 
-        return jwtBearerConfiguration!.Enabled;
+        return jwtBearerConfiguration!.Disabled;
     }
 }

@@ -18,7 +18,7 @@ internal static class AddJwtBearerOptions
         IConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);
-        if (!configuration.AuthenticationEnabled())
+        if (configuration.AuthenticationDisabled())
         {
             return swaggerGenOptions;
         }
