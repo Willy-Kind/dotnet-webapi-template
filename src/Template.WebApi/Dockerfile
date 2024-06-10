@@ -23,7 +23,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 # Set the working directory inside the container
 WORKDIR /app
 
-# ENV DOTNET_ENVIRONMENT=Development
+ENV DOTNET_ENVIRONMENT=Development
 
 # Copy the published output from the build stage
 COPY --from=build /app/out ./
