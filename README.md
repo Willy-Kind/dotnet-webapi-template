@@ -1,49 +1,100 @@
+# Dotnet Web API Template Installation and Usage Guide
+
+This guide provides instructions on how to clone, install, and use the Dotnet Web API Template, including how to run the application and its associated tests.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Git
+- .NET 8.0 SDK or later
+
+## Cloning the Template
+
+1. Open a terminal.
+2. Clone the repository using the following command:
 # Dotnet Web API Template
 
 [![.NET](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml)
 
 This is a template for building a .NET Web API project.
 
-## Getting Started
+# Getting Started
 
-To get started with this template, follow these steps:
 
-1. Clone the repository:
+## Installing the Template
 
-    ```bash
-    git clone https://github.com/Willy-Kind/dotnet-webapi-template.git
-    ```
+After cloning the repository, you need to install the template into your .NET CLI. This allows you to create new projects based on this template.
 
-2. Navigate to the project directory:
+1. Install the template:
 
     ```bash
-    cd dotnet-webapi-template
+    dotnet new install dotnet-webapi-template .
     ```
 
-3. Install the required dependencies:
+    This command tells the .NET CLI to install the template located in the current directory.
+
+## Creating a New Project
+
+Once the template is installed, you can create a new project based on it.
+
+(Only WebApi)
+1. Create a new project using the template :
+
+    ```bash
+    dotnet new webapi-template -n YourProjectName
+    ```
+
+    Replace `YourProjectName` with the desired name for your new project.
+
+2. Navigate to your new project directory:
+
+    ```bash
+    cd YourProjectName
+    ```
+
+(With Tests and .files)
+1. Create a new project using the template :
+
+    ```bash
+    dotnet new webapi-template -n YourProjectName --generateTests true
+    ```
+
+    Replace `YourProjectName` with the desired name for your new project.
+
+2. Navigate to your new project directory:
+
+    ```bash
+    cd YourProjectName
+    ```
+
+## Running the Application
+
+To run your newly created Web API application, follow these steps:
+
+1. Restore the project dependencies:
 
     ```bash
     dotnet restore
     ```
 
-4. Build the project:
+2. Build the project:
 
     ```bash
     dotnet build
     ```
 
-5. Run the API:
+3. Run the application:
 
     ```bash
     dotnet run
     ```
 
-6. Open your web browser and navigate to `http://localhost:5105/swagger` to access the API.
+4. Open your web browser and navigate to `http://localhost:5000/swagger` (or the URL provided in the console) to access the API's Swagger UI.
 
-## Contributing
+## Running the Tests
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please create a new issue or submit a pull request.
+If your project includes tests, you can run them using the following command:
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+```bash
+dotnet test
+```
