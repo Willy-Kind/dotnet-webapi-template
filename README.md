@@ -12,6 +12,10 @@ Before you begin, ensure you have the following installed:
 
 1. Open a terminal.
 2. Clone the repository using the following command:
+    ```bash
+    https://github.com/Willy-Kind/dotnet-webapi-template.git
+    ```
+   
 # Dotnet Web API Template
 
 [![.NET](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml)
