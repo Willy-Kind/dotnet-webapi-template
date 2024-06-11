@@ -1,10 +1,11 @@
 {
     "$schema": "http://json.schemastore.org/template",
-    "author": "willykind",
+    "author": "Willy Kind",
     "classifications": [
         "Net8",
         "ASP.NET"
     ],
+    "ASP.NET": [],
     "name": "Template Web API",
     "description": "Creates a new ASP.NET Core Web API project.",
     "identity": "Template.WebApi.CSharp",
@@ -16,10 +17,57 @@
     },
     "sourceName": "Template",
     "preferNameDirectory": true,
+    "symbols": {
+        "generateWebApi": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "true",
+            "description": "Whether to generate the Web API project."
+        },
+        "generateTests": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "false",
+            "description": "Whether to generate the test project."
+        }
+    },
     "sources": [
         {
             "source": "./",
             "target": "./",
+            "condition": "(generateWebApi)",
+            "exclude": [
+                "**/bin/**",
+                "**/obj/**",
+                ".github/**/*",
+                ".mono/**/*",
+                ".vscode/**/*",
+                ".template.config/**/*",
+                "templates/**/*",
+                "**/*.filelist",
+                "**/*.user",
+                "**/*.lock.json",
+                "*.nuspec",
+                "Template.WebApi.sln",
+                "tests/**/*",
+                ".editorconfig",
+                "README.md",
+                ".gitignore"
+            ]
+        },
+        {
+            "source": "./tests",
+            "target": "./tests",
+            "condition": "(generateTests)",
+            "exclude": [
+                "**/bin/**",
+                "**/obj/**"
+            ]
+        },
+        {
+            "source": "./",
+            "target": "./",
+            "condition": "(generateWebApi && generateTests)",
             "exclude": [
                 "**/bin/**",
                 "**/obj/**",
