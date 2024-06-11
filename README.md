@@ -30,7 +30,7 @@ After cloning the repository, you need to install the template into your .NET CL
 1. Install the template:
 
     ```bash
-    dotnet new install dotnet-webapi-template .
+    dotnet new install dotnet-webapi-template 
     ```
 
     This command tells the .NET CLI to install the template located in the current directory.
@@ -54,7 +54,7 @@ Once the template is installed, you can create a new project based on it.
     cd YourProjectName
     ```
 
-(With Tests and .files)
+(With tests and .files)
 1. Create a new project using the template :
 
     ```bash
