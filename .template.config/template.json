@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "willykind",
+    "classifications": [
+        "Net8",
+        "ASP.NET"
+    ],
+    "name": "ASP.NET Core Web API",
+    "description": "Creates a new ASP.NET Core Web API project.",
+    "identity": "Template.WebApi",
+    "groupIdentity": "Template.WebApi",
+    "shortName": "template-webapi",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sourceName": "TemplateWebApi",
+    "preferNameDirectory": true,
+    "sources": [
+        {
+            "source": "./",
+            "target": "./",
+            "exclude": [
+                "**/bin/**",
+                "**/obj/**",
+                ".template.config/**/*",
+                "templates/**/*",
+                "**/*.filelist",
+                "**/*.user",
+                "**/*.lock.json",
+                "*.nuspec"
+            ]
+        }
+    ]
+}
