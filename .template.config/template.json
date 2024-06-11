@@ -5,16 +5,16 @@
         "Net8",
         "ASP.NET"
     ],
-    "name": "ASP.NET Core Web API",
+    "name": "Template Web API",
     "description": "Creates a new ASP.NET Core Web API project.",
-    "identity": "Template.WebApi",
-    "groupIdentity": "Template.WebApi",
+    "identity": "Template.WebApi.CSharp",
+    "groupIdentity": "Template.WebApi.Project",
     "shortName": "template-webapi",
     "tags": {
         "language": "C#",
         "type": "project"
     },
-    "sourceName": "TemplateWebApi",
+    "sourceName": "Template",
     "preferNameDirectory": true,
     "sources": [
         {
