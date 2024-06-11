@@ -35,7 +35,7 @@
         {
             "source": "./src/Template.WebApi",
             "target": "./",
-            "condition": "(generateWebApi)",
+            "condition": "(generateWebApi && !generateTests)",
             "exclude": [
                 "**/bin/**",
                 "**/obj/**"
@@ -43,8 +43,8 @@
         },
         {
             "source": "./tests",
-            "target": "./tests",
-            "condition": "(generateTests)",
+            "target": "./",
+            "condition": "(generateTests && !generateWebApi)",
             "exclude": [
                 "**/bin/**",
                 "**/obj/**"
@@ -59,11 +59,6 @@
                 "**/obj/**",
                 ".github/**/*",
                 ".template.config/**/*",
-                "templates/**/*",
-                "**/*.filelist",
-                "**/*.user",
-                "**/*.lock.json",
-                "*.nuspec",
                 "README.md"
             ]
         }
