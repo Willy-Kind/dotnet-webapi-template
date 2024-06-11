@@ -31,7 +31,8 @@
                 "**/*.filelist",
                 "**/*.user",
                 "**/*.lock.json",
-                "*.nuspec"
+                "*.nuspec",
+                "Template.WebApi.sln"
             ]
         }
     ]
