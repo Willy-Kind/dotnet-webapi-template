@@ -33,26 +33,12 @@
     },
     "sources": [
         {
-            "source": "./",
+            "source": "./src/Template.WebApi",
             "target": "./",
             "condition": "(generateWebApi)",
             "exclude": [
                 "**/bin/**",
-                "**/obj/**",
-                ".github/**/*",
-                ".mono/**/*",
-                ".vscode/**/*",
-                ".template.config/**/*",
-                "templates/**/*",
-                "**/*.filelist",
-                "**/*.user",
-                "**/*.lock.json",
-                "*.nuspec",
-                "Template.WebApi.sln",
-                "tests/**/*",
-                ".editorconfig",
-                "README.md",
-                ".gitignore"
+                "**/obj/**"
             ]
         },
         {
