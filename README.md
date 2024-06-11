@@ -4,7 +4,7 @@
 
 This is a template for building a .NET Web API project.
 
-# Dotnet Web API Template Installation and Usage Guide
+# Getting Started
 
 This guide provides instructions on how to clone, install, and use the Dotnet Web API Template, including how to run the application and its associated tests.
 
@@ -23,8 +23,6 @@ Before you begin, ensure you have the following installed:
     https://github.com/Willy-Kind/dotnet-webapi-template.git
     ```
    
-# Getting Started
-
 ## Installing the Template
 
 After cloning the repository, you need to install the template into your .NET CLI. This allows you to create new projects based on this template.
