@@ -66,7 +66,8 @@
                 "**/*.user",
                 "**/*.lock.json",
                 "*.nuspec",
-                "Template.WebApi.sln"
+                "Template.WebApi.sln",
+                "README.md"
             ]
         }
     ]
