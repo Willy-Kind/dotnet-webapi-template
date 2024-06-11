@@ -42,15 +42,6 @@
             ]
         },
         {
-            "source": "./tests",
-            "target": "./",
-            "condition": "(generateTests && !generateWebApi)",
-            "exclude": [
-                "**/bin/**",
-                "**/obj/**"
-            ]
-        },
-        {
             "source": "./",
             "target": "./",
             "condition": "(generateWebApi && generateTests)",
