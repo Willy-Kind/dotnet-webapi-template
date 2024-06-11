@@ -58,8 +58,6 @@
                 "**/bin/**",
                 "**/obj/**",
                 ".github/**/*",
-                ".mono/**/*",
-                ".vscode/**/*",
                 ".template.config/**/*",
                 "templates/**/*",
                 "**/*.filelist",
