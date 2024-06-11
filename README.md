@@ -1,22 +1,3 @@
-# Dotnet Web API Template Installation and Usage Guide
-
-This guide provides instructions on how to clone, install, and use the Dotnet Web API Template, including how to run the application and its associated tests.
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed:
-- Git
-- .NET 8.0 SDK or later
-
-## Cloning the Template
-
-1. Open a terminal.
-2. Clone the repository using the following command:
-   
-    ```bash
-    https://github.com/Willy-Kind/dotnet-webapi-template.git
-    ```
-   
 # Dotnet Web API Template
 
 [![.NET](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Willy-Kind/dotnet-api-template/actions/workflows/dotnet.yml)
