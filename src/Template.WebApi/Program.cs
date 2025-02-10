@@ -14,13 +14,17 @@ builder.Services.AddCorsWithOrigins(builder.Environment, builder.Configuration);
 builder.Services.AddApiVersioningAndExplorer();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger(builder.Configuration);
+builder.Services.AddOpenApi();
 builder.Services.AddExceptionHandler<DefaultExceptionHandler>();
 builder.Services.AddAnimalTypeClient(builder.Configuration);
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
-    app.UseSwaggerAndUI();
+{
+    app.UseSwaggerAndUI(); ;
+    app.MapOpenApi();
+}
 
 if (app.Environment.IsProduction())
     app.UseHsts();
